@@ -20,7 +20,7 @@ body {
     color: white;
 }
 
-/* Vapor Heart Animation */
+/* Floating Hearts */
 .heart {
     position: fixed;
     bottom: -20px;
@@ -56,7 +56,7 @@ h1 {
     min-height: 40px;
 }
 
-/* Flip Cards */
+/* Flip Card */
 .gallery {
     display: flex;
     justify-content: center;
@@ -121,7 +121,6 @@ h1 {
     border-radius: 20px;
 }
 
-/* Button */
 button {
     padding: 12px 30px;
     font-size: 1.2rem;
@@ -130,7 +129,7 @@ button {
     border: none;
     border-radius: 30px;
     cursor: pointer;
-    margin-top: 40px;
+    margin-top: 30px;
     transition: 0.3s;
 }
 
@@ -141,20 +140,21 @@ button:hover {
 
 /* Hidden Message */
 #hiddenMessage {
-    margin-top: 200px;
-    font-size: 1.5rem;
+    margin-top: 50px;
+    font-size: 1.4rem;
     display: none;
     opacity: 0;
+    transition: opacity 1.5s ease-in-out;
 }
 
-.showMessage {
+#hiddenMessage.show {
     display: block;
-    animation: fadeIn 2s forwards;
+    opacity: 1;
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 </style>
 </head>
@@ -167,7 +167,6 @@ button:hover {
 
     <div class="gallery">
 
-        <!-- I -->
         <div class="flip-card" onclick="flipCard(this)">
             <div class="flip-card-inner">
                 <div class="flip-card-front">
@@ -180,7 +179,6 @@ button:hover {
             </div>
         </div>
 
-        <!-- LOVE -->
         <div class="flip-card" onclick="flipCard(this)">
             <div class="flip-card-inner">
                 <div class="flip-card-front">
@@ -193,7 +191,6 @@ button:hover {
             </div>
         </div>
 
-        <!-- YOU -->
         <div class="flip-card" onclick="flipCard(this)">
             <div class="flip-card-inner">
                 <div class="flip-card-front">
@@ -211,24 +208,25 @@ button:hover {
     <button onclick="showLove()">Click Me ❤️</button>
 
     <p id="hiddenMessage">
-        You are the most beautiful part of my life 💕 <br><br>
+        You are the most beautiful part of my life 💕 <br>
         I am so lucky to have you forever ❤️ <br><br>
-        Or meri palko me bohot yaad karta hu aapko ❤️ <br>
-        Tension mat liya karo faltu ki ❤️ <br><br>
+        Or meri palku me bohot yaad karta hu aapko ❤️ <br>
+        Tension mat liya karo faltu ki ❤️ <br>
         I Love You Soo Much ❤️❤️
     </p>
 </div>
 
 <script>
 
-// Flip Card
+// Flip card
 function flipCard(card) {
     card.classList.toggle("flipped");
 }
 
-// Typewriter Effect
+// Typewriter effect
 const text = "You are my today and all of my tomorrows 💞";
 let index = 0;
+
 function typeEffect() {
     if (index < text.length) {
         document.getElementById("typewriter").innerHTML += text.charAt(index);
@@ -238,19 +236,21 @@ function typeEffect() {
 }
 typeEffect();
 
-// Show Love Message + Auto Scroll
+// Show hidden message + smooth scroll
 function showLove() {
     const message = document.getElementById("hiddenMessage");
+    
+    message.classList.add("show");
 
-    message.classList.add("showMessage");
-
-    message.scrollIntoView({
-        behavior: "smooth",
-        block: "center"
-    });
+    setTimeout(() => {
+        message.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+    }, 300);
 }
 
-// Vapor Hearts
+// Floating hearts
 function createHeart() {
     const heart = document.createElement("div");
     heart.classList.add("heart");
@@ -261,6 +261,7 @@ function createHeart() {
     document.body.appendChild(heart);
     setTimeout(() => heart.remove(), 8000);
 }
+
 setInterval(createHeart, 200);
 
 </script>
