@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Love ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: radial-gradient(circle at top, #ff4e8d, #ff9a9e, #ff758c);
+    overflow-x: hidden;
+    text-align: center;
+    color: white;
+}
+
+/* Vapor Heart Animation */
+.heart {
+    position: fixed;
+    bottom: -20px;
+    font-size: 20px;
+    opacity: 0.7;
+    animation: floatUp linear forwards;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) scale(0.8);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(-110vh) scale(1.4);
+        opacity: 0;
+    }
+}
+
+.container {
+    margin-top: 60px;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 3rem;
+    animation: fadeIn 2s ease-in-out;
+}
+
+#typewriter {
+    font-size: 1.5rem;
+    margin-top: 10px;
+    min-height: 40px;
+}
+
+/* Flip Card */
+.gallery {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 50px;
+    flex-wrap: wrap;
+}
+
+.flip-card {
+    width: 220px;
+    height: 260px;
+    perspective: 1000px;
+}
+
+.flip-card-inner {
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+    cursor: pointer;
+    position: relative;
+}
+
+.flip-card.flipped .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+.flip-card-front {
+    background: white;
+    color: #ff4e8d;
+    font-size: 40px;
+    flex-direction: column;
+}
+
+.flip-card-front span {
+    font-size: 22px;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.flip-card-back {
+    transform: rotateY(180deg);
+}
+
+.flip-card-back img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+button {
+    padding: 12px 30px;
+    font-size: 1.2rem;
+    background: white;
+    color: #ff4e8d;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    margin-top: 30px;
+}
+
+button:hover {
+    background: #ff4e8d;
+    color: white;
+}
+
+#hiddenMessage {
+    margin-top: 25px;
+    font-size: 1.4rem;
+    display: none;
+    animation: fadeIn 2s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Happy Valentine’s Day 💖</h1>
+    <h2 id="typewriter"></h2>
+
+    <div class="gallery">
+
+        <!-- I -->
+        <div class="flip-card" onclick="flipCard(this)">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    🐼
+                    <span>I</span>
+                </div>
+                <div class="flip-card-back">
+                    <img src="no1.jpeg">
+                </div>
+            </div>
+        </div>
+
+        <!-- LOVE -->
+        <div class="flip-card" onclick="flipCard(this)">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    🐼
+                    <span>LOVE</span>
+                </div>
+                <div class="flip-card-back">
+                    <img src="no2.jpeg">
+                </div>
+            </div>
+        </div>
+
+        <!-- YOU -->
+        <div class="flip-card" onclick="flipCard(this)">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    🐼
+                    <span>YOU</span>
+                </div>
+                <div class="flip-card-back">
+                    <img src="no3.jpeg">
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <button onclick="showLove()">Click Me ❤️</button>
+
+    <p id="hiddenMessage">
+        You are the most beautiful part of my life 💕 <br>
+        I am so lucky to have you forever ❤️ <br><br>
+        Or meri palku me bohot yaad karta hu aapko ❤️ <br>
+        Tension mat liya karo faltu ki ❤️ <br>
+        I Love You Soo Much ❤️❤️
+    </p>
+</div>
+
+<script>
+
+// Flip card
+function flipCard(card) {
+    card.classList.toggle("flipped");
+}
+
+// Typewriter
+const text = "You are my today and all of my tomorrows 💞";
+let index = 0;
+function typeEffect() {
+    if (index < text.length) {
+        document.getElementById("typewriter").innerHTML += text.charAt(index);
+        index++;
+        setTimeout(typeEffect, 80);
+    }
+}
+typeEffect();
+
+// Show hidden message
+function showLove() {
+    document.getElementById("hiddenMessage").style.display = "block";
+}
+
+// Romantic vapor hearts
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "💖";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (Math.random() * 25 + 15) + "px";
+    heart.style.animationDuration = (Math.random() * 4 + 4) + "s";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 8000);
+}
+setInterval(createHeart, 200);
+
+</script>
+
+</body>
+</html>
